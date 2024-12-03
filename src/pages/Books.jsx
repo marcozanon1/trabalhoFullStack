@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import BookList from '../components/BookList';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Box, Typography, Button, CircularProgress } from '@mui/material'; // Importando componentes do MUI
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);  
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch livros do backend
+     
     axios.get('http://localhost:8080/api/books')
-      .then((response) => setBooks(response.data))
-      .catch((error) => console.error('Erro ao buscar livros:', error));
+      .then((response) => {
+        setBooks(response.data);
+        setLoading(false);  
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar livros:', error);
+        setLoading(false);  
+      });
   }, []);
 
   const handleEdit = (id) => {
@@ -26,11 +34,26 @@ const Books = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );  
+  }
+
   return (
-    <div>
-      <h1>Lista de Livros</h1>
+    <Box sx={{ maxWidth: 800, margin: 'auto', padding: 2 }}>
+      <Typography variant="h4" gutterBottom>
+        Lista de Livros
+      </Typography>
       <BookList books={books} onEdit={handleEdit} onDelete={handleDelete} />
-    </div>
+      <Box sx={{ textAlign: 'center', mt: 3 }}>
+        <Button variant="contained" color="primary" onClick={() => navigate('/add')}>
+          Adicionar Livro
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

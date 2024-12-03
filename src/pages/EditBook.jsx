@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BookForm from '../components/BookForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Box, Typography, CircularProgress, Button } from '@mui/material';  
 
 const EditBook = () => {
   const { id } = useParams();
@@ -20,13 +21,26 @@ const EditBook = () => {
       .catch((error) => console.error('Erro ao editar livro:', error));
   };
 
-  if (!initialData) return <p>Carregando...</p>;
+  if (!initialData) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    ); // Exibe o loading enquanto os dados estão sendo carregados
+  }
 
   return (
-    <div>
-      <h1>Editar Livro</h1>
+    <Box sx={{ maxWidth: 600, margin: 'auto', padding: 2 }}>
+      <Typography variant="h4" gutterBottom>
+        Editar Livro
+      </Typography>
       <BookForm initialData={initialData} onSubmit={handleSubmit} />
-    </div>
+      <Box sx={{ textAlign: 'center', mt: 2 }}>
+        <Button variant="contained" color="primary" onClick={() => navigate('/books')}>
+          Voltar para a lista de livros
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
