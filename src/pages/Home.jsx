@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Typography, Box } from '@mui/material'; // Importando componentes do MUI
+import { Button, Typography, Box } from '@mui/material';  
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
           <Button variant="contained" color="primary">Ver Livros</Button>
         </Link>
         <Link to="/add">
-          <Button variant="contained" color="secondary">Adicionar Livro</Button>
+          <Button variant="contained" color="primary">Adicionar Livro</Button>
         </Link>
       </Box>
     </Box>
