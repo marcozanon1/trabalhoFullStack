@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button } from '@mui/material';
 
 const BookCard = ({ book, onEdit, onDelete }) => {
   return (
@@ -8,8 +8,17 @@ const BookCard = ({ book, onEdit, onDelete }) => {
       <p><strong>Autor:</strong> {book.author}</p>
       <p><strong>Descrição:</strong> {book.description}</p>
       <div className="actions">
-        <button onClick={() => onEdit(book.id)}>Editar</button>
-        <button onClick={() => onDelete(book.id)}>Excluir</button>
+        <Button variant="contained" onClick={() => onEdit(book.id)}>
+          Editar
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => onDelete(book.id)}
+          style={{ marginLeft: '8px' }}
+        >
+          Excluir
+        </Button>
       </div>
     </div>
   );

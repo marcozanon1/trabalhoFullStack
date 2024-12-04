@@ -31,10 +31,10 @@ const AddBook = () => {
         Adicionar Novo Livro
       </Typography>
       <BookForm onSubmit={handleSubmit} />
-      <Box sx={{ textAlign: 'center', mt: 3 }}>
+      <Box sx={{ textAlign: 'center', mt: 3, display: 'flex', justifyContent: 'center', gap: 2 }}>
         <Button
           variant="contained"
-          onClick={() => navigate('/books')} // Adiciona a navegação ao clique
+          onClick={() => navigate('/books')}
           sx={{
             backgroundColor: '#007bff',
             color: '#fff',
@@ -44,6 +44,19 @@ const AddBook = () => {
           }}
         >
           Voltar à Lista de Livros
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate('/')}
+          sx={{
+            backgroundColor: '#6c757d',
+            color: '#fff',
+            '&:hover': {
+              backgroundColor: '#5a6268',
+            },
+          }}
+        >
+          Página Inicial
         </Button>
       </Box>
     </Box>
