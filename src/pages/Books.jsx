@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BookList from '../components/BookList';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Typography, Button, CircularProgress } from '@mui/material'; // Importando componentes do MUI
+import { Box, Typography, Button, CircularProgress } from '@mui/material'; 
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -11,7 +11,7 @@ const Books = () => {
 
   useEffect(() => {
      
-    axios.get('http://localhost:8080/api/books')
+    axios.get('https://trabalhofullstack-backend-5.onrender.com/api/books')
       .then((response) => {
         setBooks(response.data);
         setLoading(false);  
@@ -28,7 +28,7 @@ const Books = () => {
 
   const handleDelete = (id) => {
     if (window.confirm('Tem certeza de que deseja excluir este livro?')) {
-      axios.delete(`http://localhost:8080/api/books/${id}`)
+      axios.delete(`https://trabalhofullstack-backend-5.onrender.com/api/books/${id}`)
         .then(() => setBooks(books.filter((book) => book.id !== id)))
         .catch((error) => console.error('Erro ao excluir livro:', error));
     }

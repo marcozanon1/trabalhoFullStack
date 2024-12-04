@@ -10,13 +10,13 @@ const EditBook = () => {
   const [initialData, setInitialData] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/books/${id}`)
+    axios.get(`https://trabalhofullstack-backend-5.onrender.com/api/books/${id}`)
       .then((response) => setInitialData(response.data))
       .catch((error) => console.error('Erro ao carregar livro:', error));
   }, [id]);
 
   const handleSubmit = (data) => {
-    axios.put(`http://localhost:8080/api/books/${id}`, data)
+    axios.put(`https://trabalhofullstack-backend-5.onrender.com/api/books/${id}`, data)
       .then(() => navigate('/books'))
       .catch((error) => console.error('Erro ao editar livro:', error));
   };

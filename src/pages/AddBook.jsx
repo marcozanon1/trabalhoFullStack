@@ -9,7 +9,7 @@ const AddBook = () => {
 
   const handleSubmit = (data) => {
     axios
-      .post('http://localhost:8080/api/books', data)
+      .post('https://trabalhofullstack-backend-5.onrender.com/api/books', data)
       .then(() => navigate('/books'))
       .catch((error) => console.error('Erro ao adicionar livro:', error));
   };
